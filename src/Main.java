@@ -7,6 +7,9 @@ public class Main {
         task1();
         System.out.println("Задание 2");
         task2();
+        System.out.println("Задание 3");
+        task3();
+
         //  task2_ask1();
         //  task2_ask2();
     }
@@ -31,6 +34,20 @@ public class Main {
                 System.out.println("Установите облегченную версию приложения для Android по ссылке\n");
             } else System.out.println("Установите версию приложения для Android по ссылке\n");
         } else System.out.println("Ваш телефон не поддерживает наше мобильное приложение\n");
+    }
+
+    public static void deliveryDate(short deliveryDistance) {
+        byte days = 0;
+        if (deliveryDistance < 20) {
+            days = 1;
+        } else if (deliveryDistance < 60) {
+            days = 2;
+        } else if (deliveryDistance < 100) {
+            days = 3;
+        }
+        if (days > 0) {
+            System.out.println("Потребуется дней: " + days + "\n");
+        } else System.out.println("Свыше 100 км доставки нет\n");
     }
 
     public static void task1() {
@@ -77,5 +94,11 @@ public class Main {
             validatorOfPhone(LocalDate.now().getYear(), clientOS);
         } else
             System.out.println("Вы ввели не верное значение. Значение должно быть либо 0, либо 1");
+    }
+
+    public static void task3() {
+        Scanner inp = new Scanner(System.in);
+        System.out.print("Введите дистанцию - ");
+        if (inp.hasNextShort()) deliveryDate(inp.nextShort());
     }
 }
