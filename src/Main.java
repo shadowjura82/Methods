@@ -15,12 +15,8 @@ public class Main {
     }
 
     public static void validatorOfYear(int year) {
-        if ((year % 400) == 0) {
+        if (year % 100 != 0 && year % 4 == 0 || year % 400 == 0) {
             System.out.println(year + " год является високосным\n");
-        } else if ((year % 4) == 0) {
-            if ((year % 100) == 0) {
-                System.out.println(year + " год не является високосным\n");
-            } else System.out.println(year + " год является високосным\n");
         } else System.out.println(year + " год не является високосным\n");
     }
 
@@ -36,18 +32,14 @@ public class Main {
         } else System.out.println("Ваш телефон не поддерживает наше мобильное приложение\n");
     }
 
-    public static void deliveryDate(short deliveryDistance) {
-        byte days = 0;
+    public static byte deliveryDate(short deliveryDistance) {
         if (deliveryDistance < 20) {
-            days = 1;
+            return 1;
         } else if (deliveryDistance < 60) {
-            days = 2;
+            return 2;
         } else if (deliveryDistance < 100) {
-            days = 3;
-        }
-        if (days > 0) {
-            System.out.println("Потребуется дней: " + days + "\n");
-        } else System.out.println("Свыше 100 км доставки нет\n");
+            return 3;
+        } else return 0;
     }
 
     public static void task1() {
@@ -99,6 +91,10 @@ public class Main {
     public static void task3() {
         Scanner inp = new Scanner(System.in);
         System.out.print("Введите дистанцию - ");
-        if (inp.hasNextShort()) deliveryDate(inp.nextShort());
+        byte days = -1;
+        if (inp.hasNextShort()) days = deliveryDate(inp.nextShort());
+        if (days > 0) {
+            System.out.println("Потребуется дней: " + days + "\n");
+        } else System.out.println("Свыше 100 км доставки нет\n");
     }
 }
